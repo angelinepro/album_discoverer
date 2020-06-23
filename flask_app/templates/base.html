@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The Album Discoverer</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main_style.css') }}"> -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bulma.min.css') }}">
+</head>
+<body>
+	<nav class="navbar is-light  mx-2" role = "navigation" aria-label="main navigation">
+		<div class="navbar-menu">
+			<div class = "navbar-start">
+				<a class = "navbar-item" href='/home'>Home</a>
+				<a class = "navbar-item" href='/get_info'>Get an Album Recommendation</a>
+				<a class = "navbar-item" href='/top_albums'>See a List of Top Albums</a>
+			</div>
+		</div>
+	</nav>
+	{% block content %}{% endblock %}
+</body>

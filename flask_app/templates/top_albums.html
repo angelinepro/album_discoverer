@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class = 'hero is-success mx-2'>
+<h1 class = 'title'>Top 100 Albums, per Metacritic</h1>
+<br>
+</section>
+<body>
+	<div class = "table-container">
+		<table class="table is-striped is-hoverable is-narrow mx-2">
+		    <tr>
+		        {% for col in column_names %}
+		        <th>{{col}}</th>
+		        {% endfor %}
+		    </tr>
+		    {% for row in row_data %}
+		    <tr>
+		        {% for col, row_ in zip(column_names, row) %}
+		        <td>{{row_}}</td>
+		        {% endfor %}
+		    </tr>
+		    {% endfor %}
+		</table>
+	</div>
+</body>
+{% endblock %}

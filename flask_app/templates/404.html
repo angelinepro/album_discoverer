@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class = 'hero is-warning mx-2'>
+<h1 class = 'title mx-2'>You look a little lost.</h1>
+</section>
+<br>
+<p class = 'mx-2'>This page doesn't exist. Maybe you should <a href="{{ url_for('index_home') }}">go home.</a></p>
+{% endblock %}

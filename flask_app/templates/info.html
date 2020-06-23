@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class = 'hero is-success mx-2'>
+<h1 class = 'title'>Start Your Discovery</h1>
+<br>
+</section>
+<form action ='/recommend_api', method = "POST">
+<body>
+	<br>
+	<div class = "columns is-mobile">
+		<div class = "column is-full">
+			<h1 class = 'subtitle mx-2'>What album would you like to hear recommendations for?</h1>
+			<p class = "mx-2"> Enter your artist and album below!</p>
+			<p class = "mx-2"><i>Try entering Janelle Monáe: Dirty Computer</i></p>
+			<div class = "field">
+				<div class = "control">
+					<input class = "input is-success is-rounded mx-2" type = 'text' name="artist" placeholder="Artist Name" required>
+					<input class = "input is-success is-rounded mx-2" type = 'text' name="album" placeholder="Album Name" required>
+					<button class = 'button is-success is-rounded mx-2' type = 'submit' value = "Recommend an album">Recommend an Album</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</form>
+
+{% endblock %}

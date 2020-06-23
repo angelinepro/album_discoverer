@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class = 'hero is-success mx-2'>
+<h1 class = 'title'>Welcome to the Album Discoverer!</h1>
+<br>
+</section>
+<div class = "columns">
+	<div class = "column">
+		<div class="content">
+			<h1 class = 'subtitle is-4 mx-2'>You can:</h1>
+				<ul type="1">
+					<li class = "subtitle">Input an album and get recommendations</li>
+					<li class = "subtitle">See a list of Metacritic's top rated albums for inspiration</li>
+				</ul>
+		</div>
+			<br>
+	</div>
+</div>
+<section class = "section">
+	<h1 class = 'subtitle mx-2 is-centered'>What would you like to do?</h1>
+		<form action ='/get_info'>
+			<button class = 'button is-success is-rounded mx-2' type = 'submit' value = "Get an album recommendation" method = 'get'>Get an album recommendation</button>
+		</form>
+		<br>
+		<form action = '/top_albums'>
+			<button class = 'button is-success is-rounded mx-2' type = 'submit' value = "See a Top 100 List" method = 'get'>See a Top 100 list</button>
+		</form>
+</section>
+{% endblock %}

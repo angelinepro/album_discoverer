@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class = 'hero is-success mx-2'>
+<h1 class = 'title'>Your Recommendations</h1>
+<br>
+</section>
+	<body>
+        <div class = "columns is-mobile">
+            <div class = "column is-half">
+                <div class = "content mx-2">
+                    <br>
+           	        <p>Based on your input album:</p>
+                </div>
+           		<br>
+            	<table class = "table is-striped is-bordered is-narrow is-hoverable mx-2">
+                    <tr>
+                    	<th> Artist </th>
+                     	<td> {{ result['artist'] }} </td>
+                    </tr>
+                    <tr>
+                    	<th> Album </th>
+                    	<td> {{ result['album'] }} </td>
+                    </tr>
+                </table>
+                <br>
+                <div class = "content mx-2">
+                    <p>The Album Discoverer suggests:</p>
+                </div>
+            	<br>
+            	<table class = "table is-striped is-bordered is-narrow is-hoverable mx-2">
+            		<tr>
+                    	<th> Recommendation</th>
+                    	<th> Artist</th>
+                    	<th> Album</th>
+                    </tr>
+                    {% for i in recs_df %}
+                    	<tr>
+                    		<td>{{loop.index}}</td>
+                    		<td> {{i[0]}}</td>
+                    		<td> {{i[1]}}</td>
+                    	</tr>
+                    {% endfor %}
+              	</table>
+                <p class = "mx-2">
+                If the input album appears in the top 5 list, copy the artist and album as they appear in the top 5 list, and re-enter the names on the previous page. This recommendation system is sensitive to variations in spelling and naming.
+                </p>
+            </div>
+            </div>
+        </div>
+    
+   </body>
+
+{% endblock %}
