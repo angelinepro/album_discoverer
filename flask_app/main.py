@@ -6,10 +6,20 @@ import pickle
 import flask
 import numpy as np
 from spotify_api import get_spotify_info, get_tracklist, get_features, scale_PCA
-import spotipy.util as util
 from sklearn.metrics.pairwise import cosine_similarity
 from credentials import *
 import re
+
+import base64
+import requests
+
+
+headers =  {
+		'Authorization': 'Basic ' + base64.b64encode(bytes((client_id + ':' + client_secret), 'ascii')).decode()
+	}
+form = {
+	'grant_type': 'client_credentials'
+}
 
 #Import components for each album
 components_by_album = pickle.load(open('data/components_by_album.pickle', 'rb'))
@@ -30,11 +40,9 @@ def get_info():
 
 @app.route('/recommend_api', methods = ["POST", "GET"])
 def result():
-	token = util.prompt_for_user_token(username = username,
-                                  scope = scope,
-                                  client_id = client_id,
-                                  client_secret = client_secret,
-                                  redirect_uri = redirect_uri)
+	req = requests.post('https://accounts.spotify.com/api/token',
+                           headers = headers, data = form, timeout = 5)
+	token = req.json()['access_token']
 	result = request.form
 	q = 'album:' + str(result['album']) + ' artist:' + str(result['artist'])
 	album_id = get_spotify_info(q = q, token = token)
