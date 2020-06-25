@@ -8,13 +8,14 @@ import numpy as np
 from spotify_api import get_spotify_info, get_tracklist, get_features, scale_PCA
 import spotipy.util as util
 from sklearn.metrics.pairwise import cosine_similarity
-from credentials import token
+from credentials import *
 import re
 
 #Import components for each album
 components_by_album = pickle.load(open('data/components_by_album.pickle', 'rb'))
 #Import metacritic album ratings
 critics_df_all = pickle.load(open('data/critics_df_all.pickle', 'rb'))
+
 
 app = Flask(__name__)  # create instance of Flask class
 
@@ -29,6 +30,11 @@ def get_info():
 
 @app.route('/recommend_api', methods = ["POST", "GET"])
 def result():
+	token = util.prompt_for_user_token(username = username,
+                                  scope = scope,
+                                  client_id = client_id,
+                                  client_secret = client_secret,
+                                  redirect_uri = redirect_uri)
 	result = request.form
 	q = 'album:' + str(result['album']) + ' artist:' + str(result['artist'])
 	album_id = get_spotify_info(q = q, token = token)
